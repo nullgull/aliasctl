@@ -1,0 +1,13 @@
+[project]
+name = "aliasctl"
+version = "0.1.0"
+description = "Terminal-based email alias manager"
+authors = [{ name = "Your Name" }]
+dependencies = [
+  "typer[all]",
+  "textual",
+  "pyperclip"
+]
+
+[project.scripts]
+aliasctl = "aliasctl.cli:main"

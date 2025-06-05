@@ -1,0 +1,40 @@
+Button {
+	margin-left: 1;
+	margin-top: 1;
+	background: #9932CC;
+}
+
+#title {
+	margin: 1;
+	padding: 0;
+}
+
+#form-grid {
+	grid-size: 2;
+	grid-columns: auto 1fr;
+	grid-gutter: 1 0;
+	padding: 0;
+	margin: 0;
+	height: auto;
+	max-height: 36;
+}
+
+#form-grid Label {
+	margin-left: 1;
+	text-align: right;
+}
+
+#form-grid Input {
+	height: 3;
+}
+
+#body_label {
+	column-span: 2;
+	text-align: right;
+}
+
+#body {
+	column-span: 2;
+	height: auto;
+	max-height: 16;
+}
