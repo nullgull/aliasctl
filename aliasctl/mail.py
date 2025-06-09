@@ -1,22 +1,26 @@
+from email.message import EmailMessage
+import markdown
 import subprocess
 
 
-def send_email(from_email: str, to_email: str, subject: str, body: str, message_id: str):
-	if message_id and not message_id.startswith("<"):
-		message_id = f"<{message_id}>"
+def send_email(from_alias, to_email, subject, body_markdown, message_id=None):
+	body_html = markdown.markdown(body_markdown)
+	msg = EmailMessage()
+	msg["From"] = from_alias
+	msg["To"] = to_email
+	msg["Subject"] = subject
 
-	headers = f"""From: {from_email}
-To: {to_email}
-In-Reply-To: {message_id}
-References: {message_id}
-Subject: {subject}
+	if message_id:
+		message_id = f"<{message_id}>" if not message_id.startswith("<") else message_id
+		msg["In-Reply-To"] = message_id
+		msg["References"] = message_id
 
-"""
-	message = headers + body
+	msg.set_content(body_markdown)
+	msg.add_alternative(body_html, subtype='html')
 
-	subprocess.run(
-		["msmtp", "-v", "--from", from_email, "--", to_email],
-		input=message,
-		text=True,
-		check=True
+	p = subprocess.Popen(
+		["msmtp", "--from", from_alias, "--", to_email],
+		stdin=subprocess.PIPE
 	)
+
+	p.communicate(msg.as_bytes())
