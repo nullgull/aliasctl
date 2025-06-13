@@ -1,5 +1,5 @@
 Button {
-	background: black;
+	background: #12021f;
 	border: tall #d2aaff;
 	padding-left: 1;
 	padding-right: 1;
@@ -8,11 +8,6 @@ Button {
 
 Input {
 	height: 3;
-	color: #d2aaff;
-}
-
-Label {
-	color: #d2aaff;
 }
 
 Screen {
@@ -21,9 +16,9 @@ Screen {
 }
 
 TextArea {
-	height: 36vh;
-	max-height: 36vh;
-	color: #d2aaff;
+	height: 45vh;
+	max-height: 45vh;
+	margin-top: 1;
 }
 
 Input:focus, TextArea:focus {
@@ -59,11 +54,14 @@ Input:focus, TextArea:focus {
 #body_label {
 	height: 2;
 	text-align: left;
+	padding-left: 1;
+	padding-top: 1;
 }
 
 #status_group {
 	dock: bottom;
 	height: auto;
+	margin: 1;
 }
 
 #status {

@@ -2,6 +2,7 @@ from textual.app import App, ComposeResult
 from textual.containers import Grid, Horizontal, VerticalGroup
 from textual.widgets import Input, Button, Label, TextArea, Static
 from aliasctl.mail import send_email
+from aliasctl.theme import default_theme
 
 
 class EmailApp(App):
@@ -20,6 +21,9 @@ class EmailApp(App):
 		yield Horizontal(Button("Send", id="send", variant="success"), Static("", id="status"), id="status_group")
 
 	async def on_mount(self) -> None:
+		self.register_theme(default_theme)
+		self.theme = "default_theme"
+
 		form = self.query_one("#form-grid", Grid)
 
 		await form.mount_all([
