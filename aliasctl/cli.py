@@ -21,8 +21,14 @@ def get(identifier: str):
 	if alias:
 		copy_to_clipboard(alias)
 	else:
-		typer.echo(f"✖ Alias for '{identifier}' not found.")
+		alias_not_found(identifier)
 		prompt_create(identifier)
+
+
+@app.command()
+def delete(identifier: str):
+	deleted = alias_manager.delete_alias(identifier)
+	typer.echo(f"✅ Deleted alias: {deleted}") if deleted else alias_not_found(identifier)
 
 
 @app.command()
@@ -31,7 +37,7 @@ def reply(identifier: str, recipient: str = typer.Option(..., help="Recipient em
 	alias = alias_manager.get_alias(identifier)
 
 	if not alias:
-		typer.echo(f"Alias not found for identifier: {identifier}")
+		alias_not_found(identifier)
 		raise typer.Exit(1)
 
 	EmailApp(alias=alias, recipient=recipient, message_id=message_id).run()
@@ -45,6 +51,10 @@ def tui():
 def copy_to_clipboard(alias):
 	pyperclip.copy(alias)
 	typer.echo(f"🐓🐓🐓 Alias {alias} copied to clipboard! 🐓🐓🐓")
+
+
+def alias_not_found(identifier):
+	typer.echo(f"❌ Alias for '{identifier}' not found.")
 
 
 def prompt_create(identifier):

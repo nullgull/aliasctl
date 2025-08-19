@@ -79,3 +79,17 @@ def create_alias(identifier, custom=None):
 
 	save_aliases(aliases)
 	return f"{alias_key}@{domain}"
+
+
+def delete_alias(identifier):
+	aliases = load_aliases()
+	domain = get_domain()
+
+	for alias_type in [ALIAS_TYPE_STANDARD, ALIAS_TYPE_CUSTOM]:
+		for alias_key, attrs in list(aliases.get(alias_type, {}).items()):
+			if attrs.get("identifier") == identifier:
+				del aliases[alias_type][alias_key]
+				save_aliases(aliases)
+				return f"{alias_key}@{domain}"
+
+	return None
