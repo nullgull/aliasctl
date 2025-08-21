@@ -8,6 +8,7 @@ Button {
 
 Input {
 	height: 3;
+	margin-right: 1;
 }
 
 Screen {
@@ -16,9 +17,10 @@ Screen {
 }
 
 TextArea {
-	height: 45vh;
-	max-height: 45vh;
+	height: 39vh;
+	max-height: 39vh;
 	margin-top: 1;
+	margin-right: 1;
 }
 
 Input:focus, TextArea:focus {
@@ -31,7 +33,7 @@ Input:focus, TextArea:focus {
 	text-style: bold;
 }
 
-#form-grid {
+#form_grid {
 	grid-size: 2;
 	grid-columns: auto 1fr;
 	grid-gutter: 1 0;
@@ -40,7 +42,7 @@ Input:focus, TextArea:focus {
 	height: auto;
 }
 
-#form-grid Label {
+#form_grid Label {
 	padding-left: 1;
 	height: 3;
 	width: 1fr;
@@ -58,15 +60,26 @@ Input:focus, TextArea:focus {
 	padding-top: 1;
 }
 
-#status_group {
+#bottom_group {
 	dock: bottom;
 	height: auto;
 	margin: 1;
+	padding-top: 1;
+	layout: grid;
+	grid-size: 3;
+	grid-columns: auto 1fr auto;
+	grid-rows: auto auto;
+	grid-gutter: 1 0;
+	width: 100%
+}
+
+#attach_list {
+	padding-left: 1;
+	column-span: 2;
 }
 
 #status {
 	height: auto;
 	width: auto;
 	padding: 0;
-	margin-top: 1;
 }
